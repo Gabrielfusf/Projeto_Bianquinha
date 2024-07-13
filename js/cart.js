@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         totalPriceElement.textContent = total.toFixed(2);
+        localStorage.setItem('cartTotal', total.toFixed(2)); // Armazena o total no localStorage
     }
 
     function removeItem(index) {
@@ -46,4 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateCart();
+
+    document.getElementById('checkout-button').addEventListener('click', () => {
+        window.location.href = 'checkout.html';
+    });
 });
