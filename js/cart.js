@@ -12,11 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 let row = document.createElement('tr');
                 let nameCell = document.createElement('td');
                 let priceCell = document.createElement('td');
+                let quantityCell = document.createElement('td');
+                let totalCell = document.createElement('td');
                 let actionCell = document.createElement('td');
                 let removeButton = document.createElement('button');
 
                 nameCell.textContent = item.name;
                 priceCell.textContent = `€${item.price}`;
+                quantityCell.textContent = item.quantity;
+                totalCell.textContent = `€${(item.price * item.quantity).toFixed(2)}`;
                 removeButton.textContent = 'Remover';
                 removeButton.className = 'button-remove';
                 removeButton.addEventListener('click', () => {
@@ -27,17 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 row.appendChild(nameCell);
                 row.appendChild(priceCell);
+                row.appendChild(quantityCell);
+                row.appendChild(totalCell);
                 row.appendChild(actionCell);
                 cartTable.appendChild(row);
 
-                total += parseFloat(item.price);
+                total += item.price * item.quantity;
             });
         } else {
-            cartTable.innerHTML = '<tr><td colspan="3">Seu carrinho está vazio</td></tr>';
+            cartTable.innerHTML = '<tr><td colspan="5">Seu carrinho está vazio</td></tr>';
         }
 
         totalPriceElement.textContent = total.toFixed(2);
-        localStorage.setItem('cartTotal', total.toFixed(2)); // Armazena o total no localStorage
+        localStorage.setItem('cartTotal', total.toFixed(2));
+        console.log('Cart total stored:', localStorage.getItem('cartTotal')); 
     }
 
     function removeItem(index) {

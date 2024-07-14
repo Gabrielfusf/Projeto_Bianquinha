@@ -4,55 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - GREENHOUSE</title>
-    <link rel="stylesheet" href="css/cart-style.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/checkout-style.css">
 </head>
 <body>
     <header class="header">
         <div class="header-3">
             <section class="flex">
-                <a href="#" class="logo"> <i class="fas fa-seedling"></i> GREENHOUSE </a>
+                <i class="fas fa-seedling icone_plant"></i>
+                <a href="#" class="logo">GREENHOUSE</a>
                 <div class="icons">
-                    <a href="cart.html" class="fas fa-shopping-cart"></a>
+                    <!-- Icons can be added here -->
                 </div>
             </section>
         </div>
     </header>
 
-    <section class="checkout" id="checkout">
-        <h1 class="heading">Finalização da Venda</h1>
+    <section 
+        class="checkout" id="checkout">
+        <h1 class="heading">Finalização da Compra</h1>
         <div class="checkout-container">
-            <div class="order-summary">
+            <div class="order-summary card">
                 <h3>Resumo do Pedido</h3>
                 <div id="order-items">
                     <!-- Items will be populated here -->
                 </div>
                 <p>Total: €<span id="total-price">0.00</span></p>
             </div>
-            <form id="checkout-form">
+            <form id="checkout-form" class="card">
                 <h3>Informações de Pagamento</h3>
                 <div class="inputBox">
-                    <input type="text" required>
                     <label>Nome Completo</label>
+                    <input type="text" required>
                 </div>
                 <div class="inputBox">
-                    <input type="email" required>
                     <label>Email</label>
+                    <input type="email" required>
                 </div>
                 <div class="inputBox">
-                    <input type="text" required>
                     <label>Endereço</label>
+                    <input type="text" required>
                 </div>
                 <div class="inputBox">
-                    <input type="text" required>
                     <label>Número do Cartão</label>
+                    <input type="text" required>
                 </div>
                 <div class="inputBox">
-                    <input type="text" required>
                     <label>Data de Validade</label>
+                    <input type="text" required>
                 </div>
                 <div class="inputBox">
-                    <input type="text" required>
                     <label>CVV</label>
+                    <input type="text" required>
                 </div>
                 <input type="submit" value="Finalizar Compra" class="btn">
             </form>

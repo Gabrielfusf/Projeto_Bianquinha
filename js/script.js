@@ -1,10 +1,42 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const addToCartButtons = document.querySelectorAll('.box .btn');
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const productBox = button.closest('.box');
+            const productName = productBox.querySelector('h3').textContent;
+            const productPrice = parseFloat(productBox.querySelector('.price').textContent.replace('€', ''));
+            const productQuantity = parseInt(productBox.querySelector('input[type="number"]').value);
+            addToCart(productName, productPrice, productQuantity);
+        });
+    });
+
+    function addToCart(name, price, quantity) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const existingProductIndex = cart.findIndex(item => item.name === name);
+
+        if (existingProductIndex >= 0) {
+            cart[existingProductIndex].quantity += quantity;
+        } else {
+            cart.push({ name, price, quantity });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${name} foi adicionado ao carrinho.`);
+    }
+});
+
+document.querySelector('.fas.fa-shopping-cart').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.location.href = 'cart.html';
+});
+
 let menu = document.querySelector('#menu-bar');
 let navbar = document.querySelector('.navbar');
 let header = document.querySelector('.header .header-3');
 let scrollTop = document.querySelector('.scroll-top');
-
-
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 menu.addEventListener('click', () =>{
     menu.classList.toggle('fa-times');
@@ -75,25 +107,3 @@ function countDown(){
 setInterval(function(){
     countDown();
 },1000);
-
-function addToCart(name, price) {
-    cart.push({ name, price });
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${name} foi adicionado ao carrinho.`);
-}
-
-document.querySelectorAll('.box .btn').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();
-        let productBox = this.closest('.box');
-        let productName = productBox.querySelector('h3').innerText;
-        let productPrice = productBox.querySelector('.price').innerText.split(' ')[0].replace('€', '');
-        addToCart(productName, productPrice);
-    });
-});
-
-
-document.querySelector('.fas.fa-shopping-cart').addEventListener('click', function(event) {
-    event.preventDefault();
-    window.location.href = 'cart.html';
-});
